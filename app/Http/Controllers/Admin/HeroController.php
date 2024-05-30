@@ -63,7 +63,7 @@ class HeroController extends Controller
             'sub_title' => ['required', 'max:300'],
             'btn_text' => ['', 'max:200'],
             'btn_url' => ['', 'max:100'],
-            'image' => ['max:300', 'image']
+            'image' => ['max:5000', 'image']
         ]);
 
         // dd($request)->all();
