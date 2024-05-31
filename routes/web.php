@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -53,6 +54,9 @@ Route::group([
 
     /***Service Route* */
     Route::resource('service', ServiceController::class);
+
+    /***About Route* */
+    Route::resource('about', AboutController::class);
 });
 
 /*** */

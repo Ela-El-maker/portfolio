@@ -62,6 +62,7 @@
         </li>
 
         <li><a class="nav-link" href="{{route('admin.service.index')}}"><i class="fas fa-fire"></i>Services</a></li>
+        <li><a class="nav-link" href="{{route('admin.about.index')}}"><i class="fas fa-fire"></i>About</a></li>
 
         {{-- <li><a class="nav-link" href="blank.html"><i class="fas fa-fire"></i> <span>Blank Page</span></a></li> --}}
       
