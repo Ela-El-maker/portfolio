@@ -64,6 +64,16 @@
         <li><a class="nav-link" href="{{route('admin.service.index')}}"><i class="fas fa-fire"></i>Services</a></li>
         <li><a class="nav-link" href="{{route('admin.about.index')}}"><i class="fas fa-fire"></i>About</a></li>
 
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Portfolio</span></a>
+          <ul class="dropdown-menu" style="display: none;">
+            <li><a class="nav-link" href="{{route('admin.category.index')}}">Category</a></li>
+            <li><a class="nav-link" href="{{route('admin.hero.index')}}">Hero Section</a></li>
+
+          </ul>
+        </li>
+
         {{-- <li><a class="nav-link" href="blank.html"><i class="fas fa-fire"></i> <span>Blank Page</span></a></li> --}}
       
       </ul>

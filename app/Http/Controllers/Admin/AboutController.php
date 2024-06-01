@@ -14,7 +14,8 @@ class AboutController extends Controller
     public function index()
     {
         //
-        return view('admin.about.index');
+        $about = About::first();
+        return view('admin.about.index', compact('about'));
     }
 
     /**
@@ -57,8 +58,8 @@ class AboutController extends Controller
         //
         $request->validate([
             'title' => ['required', 'max:200'],
-            'description' => ['required', 'max:1000'],
-            'resume' => ['', 'max:10000','mimes:pdf,csv,txt'],
+            'description' => ['required', 'max:5000'],
+            'resume' => ['', 'max:10000', 'mimes:pdf,csv,txt'],
             'image' => ['max:5000', 'image']
         ]);
 
@@ -84,29 +85,33 @@ class AboutController extends Controller
         // }
 
         $about = About::first();
-        $imagePath = handleUpload('image',$about);
+        $imagePath = handleUpload('image', $about);
 
-        $resumePath = handleUpload('resume',$about);
+        $resumePath = handleUpload('resume', $about);
 
         About::updateOrCreate(
             ['id' => $id],
             [
                 'title' => $request->title,
                 'description' => $request->description,
-                'resume' => (!empty($imagePath) ? $imagePath : $about->image),
-                'image' => (!empty($resumePath) ? $resumePath : $about->resume),
+                'image' => (!empty($imagePath) ? $imagePath : $about->image),
+                'resume' => (!empty($resumePath) ? $resumePath : $about->resume),
             ]
         );
 
         // dd('success');
         // return handleUpload('image');
 
-        
+
         toastr()->success('About Updated Successfully!', 'Congrats');
         return redirect()->back();
-
     }
 
+    public function resumeDownload()
+    {
+        $about = About::first();
+        return response()->download(public_path($about->resume));
+    }
     /**
      * Remove the specified resource from storage.
      */

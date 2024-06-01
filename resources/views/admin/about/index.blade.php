@@ -39,21 +39,31 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="title" class="form-control" value="">
+                                        <input type="text" name="title" class="form-control"
+                                            value="{{ $about->title }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="description" class="summernote"></textarea>
+                                        <textarea name="description" class="summernote">{!! $about->description !!}</textarea>
                                     </div>
                                 </div>
 
-                               
+                                @if ($about->resume)
+                                    <div class="form-group row mb-4">
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <i class="fas fa-file-pdf" style="font-size: 100px"></i>
+                                        </div>
+                                    </div>
+                                @endif
+
 
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Resume Upload</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Resume
+                                        Upload</label>
                                     <div class="col-sm-12 col-md-7">
                                         <div class="custom-file">
                                             <input name="resume" type="file" class="custom-file-input" id="customFile">
@@ -78,3 +88,15 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#image-preview').css({
+                'background-image': 'url("{{ asset($about->image) }}")',
+                'background-size': 'cover',
+                'background-position': 'center center',
+            })
+        });
+    </script>
+@endpush
