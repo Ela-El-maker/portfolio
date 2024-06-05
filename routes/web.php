@@ -1,11 +1,20 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ExperienceController;
+use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Admin\FeedbackSectionSettingController;
 use App\Http\Controllers\Admin\HeroController;
+use App\Http\Controllers\Admin\PortfolioItemController;
+use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SkillItemController;
+use App\Http\Controllers\Admin\SkillSectionSettingController;
 use App\Http\Controllers\Admin\TyperTitleController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Redis;
@@ -46,6 +55,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('portfolio-details/{id}', [HomeController::class, 'showPortfolio'])->name('show.portfolio');
+
 
 /***Admin Routes */
 Route::group([
@@ -63,6 +74,35 @@ Route::group([
 
     /*** Category Route */
     Route::resource('category', CategoryController::class);
+
+
+    /**** Portfolio Item Route */
+    Route::resource('portfolio-item', PortfolioItemController::class);
+
+    
+   /**** Portfolio Section Setting Route */
+    Route::resource('portfolio-section-setting', PortfolioSectionSettingController::class);
+
+    /**** Skill Section Setting Route */
+    Route::resource('skill-section-setting', SkillSectionSettingController::class);
+
+    /**** Skill Item Setting Route */
+    Route::resource('skill-item', SkillItemController::class);
+
+    /** experience Section */
+    Route::resource('experience', ExperienceController::class);
+
+    Route::resource('feedback', FeedbackController::class);
+    Route::resource('feedback-section-setting', FeedbackSectionSettingController::class);
+
+    /*** Blog Category Route */
+    Route::resource('blog-category', BlogCategoryController::class);
+
+    Route::resource('blog', BlogController::class);
+
+
+
+    
 });
 
 /*** */

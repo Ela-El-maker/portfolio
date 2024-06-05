@@ -4,8 +4,16 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Category;
+use App\Models\Experience;
+use App\Models\Feedback;
+use App\Models\FeedbacksectionSetting;
 use App\Models\Hero;
+use App\Models\PortfolioItem;
+use App\Models\PortfolioSectionSetting;
 use App\Models\Service;
+use App\Models\SkillItem;
+use App\Models\SkillSectionSetting;
 use App\Models\TyperTitle;
 use Illuminate\Http\Request;
 
@@ -18,6 +26,37 @@ class HomeController extends Controller
         $typerTitles = TyperTitle::all();
         $services = Service::all();
         $about = About::first();
-        return view('frontend.home', compact('hero','typerTitles','services','about'));
+        $portfolioTitle = PortfolioSectionSetting::first();
+        $portfolioCategories = Category::all();
+        $portfolioItems = PortfolioItem::all();
+        $skillSection = SkillSectionSetting::first();
+        $skillProgram= SkillItem::all();
+        $experience = Experience::first();
+        $feedbacks = Feedback::all();
+        $feedbackSection = FeedbacksectionSetting::first();
+
+        return view(
+            'frontend.home',
+            compact(
+                'hero',
+                'typerTitles',
+                'services',
+                'about',
+                'portfolioTitle',
+                'portfolioCategories',
+                'portfolioItems',
+                'skillSection',
+                'skillProgram',
+                'experience',
+                'feedbacks',
+                'feedbackSection'
+            )
+        );
+    }
+
+    public function showPortfolio($id)
+    {
+        $portfolio = PortfolioItem::findorfail($id);
+        return view('frontend.portfolio-details', compact('portfolio'));
     }
 }

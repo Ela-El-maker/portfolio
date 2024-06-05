@@ -69,10 +69,41 @@
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Portfolio</span></a>
           <ul class="dropdown-menu" style="display: none;">
             <li><a class="nav-link" href="{{route('admin.category.index')}}">Category</a></li>
-            <li><a class="nav-link" href="{{route('admin.hero.index')}}">Hero Section</a></li>
+            <li><a class="nav-link" href="{{route('admin.portfolio-item.index')}}">Portfolio Item</a></li>
+            <li><a class="nav-link" href="{{route('admin.portfolio-section-setting.index')}}">Section Setting</a></li>
+
 
           </ul>
         </li>
+
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Skill</span></a>
+          <ul class="dropdown-menu" style="display: none;">
+            
+            <li><a class="nav-link" href="{{route('admin.skill-section-setting.index')}}">Skill Setting</a></li>
+            <li><a class="nav-link" href="{{route('admin.skill-item.index')}}">Skill Bars</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link" href="{{route('admin.experience.index')}}"><i class="fas fa-fire"></i> <span>Experience</span></a></li>
+
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Feedback</span></a>
+          <ul class="dropdown-menu" style="display: none;">
+            
+            <li><a class="nav-link" href="{{route('admin.feedback.index')}}">Feedbacks</a></li>
+            <li><a class="nav-link" href="{{route('admin.feedback-section-setting.index')}}">Feedback Section Setting</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Blogs</span></a>
+          <ul class="dropdown-menu" style="display: none;">
+            
+            <li><a class="nav-link" href="{{route('admin.blog-category.index')}}">Blogs Category</a></li>
+            <li><a class="nav-link" href="{{route('admin.blog.index')}}">Blogs </a></li>
+          </ul>
+        </li>
+
 
         {{-- <li><a class="nav-link" href="blank.html"><i class="fas fa-fire"></i> <span>Blank Page</span></a></li> --}}
       
