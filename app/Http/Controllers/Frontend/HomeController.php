@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Experience;
 use App\Models\Feedback;
@@ -34,7 +35,7 @@ class HomeController extends Controller
         $experience = Experience::first();
         $feedbacks = Feedback::all();
         $feedbackSection = FeedbacksectionSetting::first();
-
+        $blogs = Blog::latest()->take(4)->get();
         return view(
             'frontend.home',
             compact(
@@ -49,7 +50,8 @@ class HomeController extends Controller
                 'skillProgram',
                 'experience',
                 'feedbacks',
-                'feedbackSection'
+                'feedbackSection',
+                'blogs'
             )
         );
     }
@@ -58,5 +60,14 @@ class HomeController extends Controller
     {
         $portfolio = PortfolioItem::findorfail($id);
         return view('frontend.portfolio-details', compact('portfolio'));
+    }
+
+    public function showBlog($id)
+    {
+        $blog = Blog::findorfail($id);
+        $previousPost = Blog::where('id','<',$blog->id)->orderBy('id','desc')->first();
+        $nextPost = Blog::where('id','>',$blog->id)->orderBy('id','asc')->first();
+
+        return view('frontend.blog-details', compact('blog','previousPost','nextPost'));
     }
 }
