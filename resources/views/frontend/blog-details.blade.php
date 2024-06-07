@@ -36,10 +36,10 @@
                         <div class="meta-title">Tag</div>
                         <h4 class="meta-value"><a href="javascript:void(0)">{{$blog->getCategory->name}}</a></h4>
                     </div>
-                    <div class="single-meta">
+                    {{-- <div class="single-meta">
                         <div class="meta-title">Comments</div>
                         <h4 class="meta-value">258 Comments</h4>
-                    </div>
+                    </div> --}}
                 </div>
                 <figure class="image-block">
                     <img class="img-fix" src="{{asset($blog->image)}}" alt="">

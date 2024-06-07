@@ -39,7 +39,7 @@ class BlogController extends Controller
             [
                 'image' => ['required', 'image', 'max:5000'],
                 'title' => ['required', 'max:200'],
-                'description' => ['required'],
+                'description' => ['required','max:10000'],
                 'category_id' => ['required', 'numeric'],
                
             ]
