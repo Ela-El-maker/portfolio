@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap-timepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/select2.min.css') }}">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('assets/css/datatable.css')}}">
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
@@ -68,6 +69,7 @@
     <script src="{{ asset('assets/js/stisla.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/summernote-bs4.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.uploadPreview.min.js') }}"></script>
+    <script src="{{asset('assets/js/datatable.js')}}"></script>
 
 
 
@@ -141,6 +143,7 @@
                         $.ajax({
                             type: "DELETE",
                             url: deleteUrl,
+                            data: {_token: "{{csrf_token()}}"},
                             success: function(data) {
                                 if (data.status == 'error') {
                                     Swal.fire(

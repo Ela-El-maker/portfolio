@@ -33,23 +33,17 @@
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <a href="index.html">Stisla</a>
+      <a href="{{route('dashboard')}}">Stisla</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-      <a href="index.html">St</a>
+      <a href="{{route('dashboard')}}">St</a>
     </div>
     <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
-        <li class="nav-item active">
-          <a href="index.html" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+        <li class="nav-item">
+          <a href="{{route('dashboard')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
         </li>
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Dropdown</span></a>
-          <ul class="dropdown-menu" style="display: none;">
-            <li><a class="nav-link" href="">test</a></li>
-
-          </ul>
-        </li>
+        
         <li class="menu-header">Sections</li>
 
         <li class="nav-item dropdown">
@@ -114,18 +108,30 @@
 
           </ul>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" {{setSidebarActive(['admin.footer-social-link.*','admin.footer-info.*','admin.footer-useful-links.*','admin.footer-help-links.*'])}}>
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Footer</span></a>
           <ul class="dropdown-menu" style="display: none;">
             
-            <li><a class="nav-link" href="{{route('admin.footer-social-link.index')}}">Social Links</a></li>
-            <li><a class="nav-link" href="{{route('admin.footer-info.index')}}">Footer Info</a></li>
+            <li class="{{setSidebarActive(['admin.footer-social-link.*'])}}"><a class="nav-link"  href="{{route('admin.footer-social-link.index')}}">Social Links</a></li>
+            <li class="{{setSidebarActive(['admin.footer-info.*'])}}"><a class="nav-link" href="{{route('admin.footer-info.index')}}">Footer Info</a></li>
             <li><a class="nav-link" href="{{route('admin.footer-info-contact.index')}}">Footer Contact Info</a></li>
-            <li><a class="nav-link" href="{{route('admin.footer-useful-links.index')}}">Footer Useful Links</a></li>
-            <li><a class="nav-link" href="{{route('admin.footer-help-links.index')}}">Footer Help Links</a></li>
+            <li class="{{setSidebarActive(['admin.footer-useful-links.*'])}}"><a class="nav-link" href="{{route('admin.footer-useful-links.index')}}">Footer Useful Links</a></li>
+            <li class="{{setSidebarActive(['admin.footer-help-links.*'])}}"><a class="nav-link" href="{{route('admin.footer-help-links.index')}}">Footer Help Links</a></li>
 
           </ul>
         </li>
+
+        {{-- <li class="nav-item dropdown">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Settings</span></a>
+          <ul class="dropdown-menu" style="display: none;">
+            
+            <li><a class="nav-link" href="{{route('admin.general-setting.index')}}">General Setting </a></li>
+
+          </ul>
+        </li> --}}
+
+        <li class="menu-header">Settings</li>
+        <li class="{{setSidebarActive(['admin.settings.*'])}}"><a class="nav-link" href="{{route('admin.settings.index')}}"><i class="fas fa-fire"></i>Settings</a></li>
 
 
         {{-- <li><a class="nav-link" href="blank.html"><i class="fas fa-fire"></i> <span>Blank Page</span></a></li> --}}

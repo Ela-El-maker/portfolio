@@ -61,7 +61,7 @@
 <!-- Portfolio-Area-End -->
 
 <!-- Quote-Area-Start -->
-<section class="quote-area section-padding-bottom">
+{{-- <section class="quote-area section-padding-bottom">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -86,6 +86,6 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- Quote-Area-End -->
 @endsection
