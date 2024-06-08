@@ -80,6 +80,15 @@ class HomeController extends Controller
         return view('frontend.blog-details', compact('blog','previousPost','nextPost'));
     }
 
+    // public function  portfolio()
+    // {
+    //     $portfolioCategories = Category::all();
+    //     $portfolioTitle = PortfolioSectionSetting::first();
+    //     $portfolioItems = PortfolioItem::all();
+    //     $portfolios = PortfolioItem::latest()->paginate(6);
+    //     return view('frontend.sections.portfolio', compact('portfolios','portfolioTitle','portfolioCategories','portfolioItems'));
+    // }
+
     public function  blog()
     {
         $blogs = Blog::latest()->paginate(6);
