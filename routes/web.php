@@ -10,6 +10,11 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\FeedbackSectionSettingController;
+use App\Http\Controllers\Admin\FooterHelpLinksController;
+use App\Http\Controllers\Admin\FooterInfoContactController;
+use App\Http\Controllers\Admin\FooterInfoController;
+use App\Http\Controllers\Admin\FooterSocialLinkController;
+use App\Http\Controllers\Admin\FooterUsefulLinksController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
@@ -111,6 +116,16 @@ Route::group([
 
 
     Route::resource('contact-section-setting', ContactSectionSettingController::class);
+
+    Route::resource('footer-social-link', FooterSocialLinkController::class);
+    Route::resource('footer-info', FooterInfoController::class);
+    Route::resource('footer-info-contact', FooterInfoContactController::class);
+    Route::resource('footer-useful-links', FooterUsefulLinksController::class);
+    Route::resource('footer-help-links', FooterHelpLinksController::class);
+
+
+
+
 
 
     
