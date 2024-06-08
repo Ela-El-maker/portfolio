@@ -15,11 +15,14 @@ use App\Http\Controllers\Admin\FooterInfoContactController;
 use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\FooterSocialLinkController;
 use App\Http\Controllers\Admin\FooterUsefulLinksController;
+use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SEOSettingController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SkillItemController;
 use App\Http\Controllers\Admin\SkillSectionSettingController;
 use App\Http\Controllers\Admin\TyperTitleController;
@@ -63,12 +66,14 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('portfolio-details/{id}', [HomeController::class, 'showPortfolio'])->name('show.portfolio');
+// Route::get('portfolios', [HomeController::class, 'portfolio'])->name('portfolio');
 
 Route::get('blog-details/{id}', [HomeController::class, 'showBlog'])->name('show.blog');
 
 Route::get('blogs', [HomeController::class, 'blog'])->name('blog');
 
 Route::post('contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('resume/download', [AboutController::class, 'resumeDownload'])->name('resume.download');
 
 
 /***Admin Routes */
@@ -81,7 +86,6 @@ Route::group([
     Route::resource('service', ServiceController::class);
 
     /***About Route* */
-    Route::get('resume/download', [AboutController::class, 'resumeDownload'])->name('resume.download');
     Route::resource('about', AboutController::class);
 
 
@@ -124,8 +128,12 @@ Route::group([
     Route::resource('footer-help-links', FooterHelpLinksController::class);
 
 
+    /*** Settings */
+    Route::get('settings', SettingController::class)->name('settings.index');
 
+    Route::resource('general-setting', GeneralSettingController::class);
 
+    Route::resource('seo-setting', SEOSettingController::class);
 
 
     
