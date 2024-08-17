@@ -103,19 +103,7 @@
             </li>
 
 
-            {{-- <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Career Development</span></a>
-                <ul class="dropdown-menu" style="display: none;">
-                    {{-- <li><a class="nav-link" href="{{ route('admin.service.index') }}"><i
-                                class="fas fa-fire"></i>Career Section Setting</a>
-                    </li> 
-
-                    <li><a class="nav-link" href="{{ route('admin.service.index') }}"><i class="fas fa-fire"></i>Career
-                            Growth</a>
-                    </li>
-                </ul>
-            </li> --}}
+  
 
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
@@ -193,6 +181,9 @@
                     <li><a class="nav-link" href="{{ route('admin.contact-section-setting.index') }}">Contact Section
                             Setting </a></li>
 
+            <li><a class="nav-link" href="{{ route('contact-form.index') }}"><i class="fas fa-fire"></i> <span>Received Messages</span></a></li>
+                    
+
                 </ul>
             </li>
             <li class="nav-item dropdown"
@@ -215,14 +206,7 @@
                 </ul>
             </li>
 
-            {{-- <li class="nav-item dropdown">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Settings</span></a>
-          <ul class="dropdown-menu" style="display: none;">
-            
-            <li><a class="nav-link" href="{{route('admin.general-setting.index')}}">General Setting </a></li>
-
-          </ul>
-        </li> --}}
+        
 
             <li class="menu-header">Settings</li>
             <li class="{{ setSidebarActive(['admin.settings.*']) }}"><a class="nav-link"

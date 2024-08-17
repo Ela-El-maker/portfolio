@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\SkillSectionSettingController;
 use App\Http\Controllers\Admin\TyperTitleController;
 use App\Http\Controllers\Admin\WorkingOnController;
 use App\Http\Controllers\Admin\WorkingOnSectionSettingController;
+use App\Http\Controllers\Frontend\ContactMessageController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,10 @@ Route::get('/blog-details', function () {
 Route::get('/portfolio-details', function () {
     return view('frontend.portfolio-details');
 });
+
+ /***About Route* */
+ Route::resource('contact-form', ContactMessageController::class);
+
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <!-- Contact-Form -->
-                <form class="contact-form" id="contact-form">
+                <form class="contact-form" action="{{ route('contact-form.store') }}" id="contact-form">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-box">
@@ -60,46 +60,41 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function() {
-            // CSRF Token
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    $(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).on('submit', '#contact-form', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('contact-form.store') }}",
+            data: $(this).serialize(),
+            beforeSend: function() {
+                $('#submit_btn').prop("disabled", true).text('Loading ...');
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    toastr.success(response.message);
+                    $('#contact-form').trigger('reset');
                 }
-            });
-            $(document).on('submit', '#contact-form', function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('contact') }}",
-                    data: $(this).serialize(),
-                    beforeSend: function() {
-                        $('#submit_btn').prop("disabled", true);
-                        $('#submit_btn').text('Loading ...');
-                    },
-                    success: function(response) {
-                        // console.log(response)
-                        if (response.status == 'success') {
-                            toastr.success(response.message);
-                            $('#submit_btn').prop("disabled", false);
-                            $('#submit_btn').text('Send Now');
-                            $('#contact-form').trigger('reset');
-                        }
-                    },
-                    error: function(response) {
-                        // console.log(response);
-                        if (response.status == 422) {
-                            let errorMessage = $.parseJSON(response.responseText);
-                            $.each(errorMessage.errors, function(key, val) {
-                                console.log(val[0]);
-                                toastr.error(val[0])
-                            });
-                            $('#submit_btn').prop("disabled", false);
-                            $('#submit_btn').text('Send Now')
-                        }
-                    }
-                })
-            })
-        })
+            },
+            error: function(response) {
+                if (response.status === 422) {
+                    let errors = $.parseJSON(response.responseText);
+                    $.each(errors.errors, function(key, val) {
+                        toastr.error(val[0]);
+                    });
+                }
+                $('#submit_btn').prop("disabled", false).text('Send Now');
+            }
+        });
+    });
+});
+
     </script>
 @endpush
