@@ -82,7 +82,7 @@
                                 class="fas fa-fire"></i>Section Setting</a>
                     </li>
 
-                    <li><a class="nav-link" href=""><i
+                    <li><a class="nav-link" href="{{ route('admin.bucket-list.index') }}"><i
                                 class="fas fa-fire"></i>BucketList Projects</a>
                     </li>
                 </ul>

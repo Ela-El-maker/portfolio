@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BlogSectionSettingController;
+use App\Http\Controllers\Admin\BucketListController;
 use App\Http\Controllers\Admin\BucketListSectionSettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactSectionSettingController;
@@ -101,6 +102,8 @@ Route::group([
     /**** BucketList Section Setting Route */
     Route::resource('bucket-list-section-setting', BucketListSectionSettingController::class);
 
+    /***CareerGrowth Route* */
+    Route::resource('bucket-list', BucketListController::class);
 
 
     /***PersonalGrowth Route* */

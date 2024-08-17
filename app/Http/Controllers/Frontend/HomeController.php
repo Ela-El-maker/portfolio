@@ -7,6 +7,7 @@ use App\Mail\ContactMail;
 use App\Models\About;
 use App\Models\Blog;
 use App\Models\BlogSectionSetting;
+use App\Models\BucketList;
 use App\Models\BucketListSectionSetting;
 use App\Models\Category;
 use App\Models\ContactSectionSetting;
@@ -36,6 +37,7 @@ class HomeController extends Controller
         $typerTitles = TyperTitle::all();
         $services = Service::all();
         $personalGrowth = PersonalGrowth::all();
+        $bucketListGrowth = BucketList::all();
         $about = About::first();
         $portfolioTitle = PortfolioSectionSetting::first();
         $personalTitle = PersonalGrowthSectionSetting::first();
@@ -68,6 +70,7 @@ class HomeController extends Controller
                 'serviceTitle',
                 'workingOnTitle',
                 'bucketlistTitle',
+                'bucketListGrowth',
                 'skillSection',
                 'skillProgram',
                 'experience',
@@ -75,7 +78,7 @@ class HomeController extends Controller
                 'feedbackSection',
                 'blogs',
                 'blogTitle',
-                'contactTitle'
+                'contactTitle',
             )
         );
     }

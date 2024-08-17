@@ -6,22 +6,22 @@
             <div class="section-header-back">
                 <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Personal Development Projects Section</h1>
+            <h1>Bucket List Career Development Projects Section</h1>
 
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Personal Development Projects Section</h2>
+            <h2 class="section-title">Bucket List Career Development Projects Section</h2>
 
 
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Create Personal Project</h4>
+                            <h4>Create Bucket List Career Development Projects</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.personal-growth.store') }}" method="POST"
+                            <form action="{{ route('admin.bucket-list.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
 
@@ -41,7 +41,7 @@
                                
 
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">From Date</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Start Date</label>
                                     
                                      <div class="col-sm-12 col-md-7">
                                      <div class="input-group input-daterange">
@@ -49,15 +49,7 @@
                                         <input type="text" class="form-control" name="startDate" value="">
                                     </div>
                                     </div>
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Due Date</label>
-                                    <div class="col-sm-12 col-md-7">
-                                    <br>
-                                    <div class="input-group input-daterange">
-                                    
-                                        <input type="text" class="form-control" name="dueDate" value="">
-
-                                    </div>
-                                    </div>
+        
 
                                 </div>
 
