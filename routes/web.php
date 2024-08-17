@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SEOSettingController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ServiceSectionSettingController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SkillItemController;
 use App\Http\Controllers\Admin\SkillSectionSettingController;
@@ -58,7 +59,7 @@ Route::get('/portfolio-details', function () {
     return view('frontend.portfolio-details');
 });
 
-Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -66,7 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('portfolio-details/{id}', [HomeController::class, 'showPortfolio'])->name('show.portfolio');
 // Route::get('portfolios', [HomeController::class, 'portfolio'])->name('portfolio');
@@ -81,12 +82,18 @@ Route::get('resume/download', [AboutController::class, 'resumeDownload'])->name(
 
 /***Admin Routes */
 Route::group([
-    'middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function(){
+    'middleware' => ['auth'],
+    'prefix' => 'admin',
+    'as' => 'admin.'
+], function () {
     Route::resource('hero', HeroController::class);
     Route::resource('typer-title', TyperTitleController::class);
 
     /***Service Route* */
     Route::resource('service', ServiceController::class);
+    /**** Service Section Setting Route */
+    Route::resource('service-section-setting', ServiceSectionSettingController::class);
+
 
 
     /***PersonalGrowth Route* */
@@ -107,8 +114,8 @@ Route::group([
     /**** Portfolio Item Route */
     Route::resource('portfolio-item', PortfolioItemController::class);
 
-    
-   /**** Portfolio Section Setting Route */
+
+    /**** Portfolio Section Setting Route */
     Route::resource('portfolio-section-setting', PortfolioSectionSettingController::class);
 
     /**** Skill Section Setting Route */
@@ -145,9 +152,6 @@ Route::group([
     Route::resource('general-setting', GeneralSettingController::class);
 
     Route::resource('seo-setting', SEOSettingController::class);
-
-
-    
 });
 
 /*** */

@@ -64,9 +64,9 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Services</span></a>
                 <ul class="dropdown-menu" style="display: none;">
-                    {{-- <li><a class="nav-link" href="{{ route('admin.service.index') }}"><i
-                                class="fas fa-fire"></i>Services Section Setting</a>
-                    </li> --}}
+                    <li><a class="nav-link" href="{{ route('admin.service-section-setting.index') }}"><i
+                                class="fas fa-fire"></i>Section Setting</a>
+                    </li>
 
                     <li><a class="nav-link" href="{{ route('admin.service.index') }}"><i
                                 class="fas fa-fire"></i>Services</a>
