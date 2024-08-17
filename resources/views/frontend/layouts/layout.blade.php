@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style-plugin-collection.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/theme.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/timer.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 </head>
@@ -63,6 +64,7 @@
     <script src="{{ asset('frontend/assets/js/jquery-plugin-collection.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/modernizr.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/timer.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     @stack('scripts')

@@ -13,6 +13,8 @@ use App\Models\Experience;
 use App\Models\Feedback;
 use App\Models\FeedbacksectionSetting;
 use App\Models\Hero;
+use App\Models\PersonalGrowth;
+use App\Models\PersonalGrowthSectionSetting;
 use App\Models\PortfolioItem;
 use App\Models\PortfolioSectionSetting;
 use App\Models\Service;
@@ -30,8 +32,10 @@ class HomeController extends Controller
         $hero = Hero::first();
         $typerTitles = TyperTitle::all();
         $services = Service::all();
+        $personalGrowth = PersonalGrowth::all();
         $about = About::first();
         $portfolioTitle = PortfolioSectionSetting::first();
+        $personalTitle = PersonalGrowthSectionSetting::first();
         $portfolioCategories = Category::all();
         $portfolioItems = PortfolioItem::all();
         $skillSection = SkillSectionSetting::first();
@@ -49,10 +53,12 @@ class HomeController extends Controller
                 'hero',
                 'typerTitles',
                 'services',
+                'personalGrowth',
                 'about',
                 'portfolioTitle',
                 'portfolioCategories',
                 'portfolioItems',
+                'personalTitle',
                 'skillSection',
                 'skillProgram',
                 'experience',

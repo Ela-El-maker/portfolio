@@ -35,7 +35,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="description" id="" cols="30" rows="10" style="height: 100px" class="form-control"></textarea>
+                                        <textarea name="description" id="" cols="30" rows="10" style="height: 200px" class="form-control"></textarea>
                                     </div>
                                 </div>
 

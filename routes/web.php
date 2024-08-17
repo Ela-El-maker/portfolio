@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\FooterSocialLinkController;
 use App\Http\Controllers\Admin\FooterUsefulLinksController;
 use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\HeroController;
+use App\Http\Controllers\Admin\PersonalGrowthController;
+use App\Http\Controllers\Admin\PersonalGrowthSectionSettingController;
 use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -27,6 +29,7 @@ use App\Http\Controllers\Admin\SkillItemController;
 use App\Http\Controllers\Admin\SkillSectionSettingController;
 use App\Http\Controllers\Admin\TyperTitleController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Models\PersonalGrowthSectionSetting;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
@@ -84,6 +87,14 @@ Route::group([
 
     /***Service Route* */
     Route::resource('service', ServiceController::class);
+
+
+    /***PersonalGrowth Route* */
+    Route::resource('personal-growth', PersonalGrowthController::class);
+
+    /**** Growth Section Setting Route */
+    Route::resource('personal-growth-section-setting', PersonalGrowthSectionSettingController::class);
+
 
     /***About Route* */
     Route::resource('about', AboutController::class);

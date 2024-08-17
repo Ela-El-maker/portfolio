@@ -14,7 +14,17 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/css/bootstrap-iconpicker.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/css/bootstrap-iconpicker.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css"
+        integrity="sha512-mQ8Fj7epKOfW0M7CwuuxdPtzpmtIB5rI4rl76MSd3mm5dCYBKjzPk7EU/2buhPMs0KmC6YOPR/MQlQwpkdNcpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+        integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/selectric.css') }}">
@@ -22,7 +32,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap-timepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/select2.min.css') }}">
-    <link rel="stylesheet" href="{{asset('assets/css/datatable.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datatable.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.minimal.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.material.css') }}">
+
+
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -59,8 +73,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    
-    
+
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
@@ -69,7 +83,8 @@
     <script src="{{ asset('assets/js/stisla.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/summernote-bs4.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.uploadPreview.min.js') }}"></script>
-    <script src="{{asset('assets/js/datatable.js')}}"></script>
+    <script src="{{ asset('assets/js/datatable.js') }}"></script>
+    <script src="{{ asset('assets/js/datepicker.js') }}"></script>
 
 
 
@@ -83,7 +98,8 @@
     <script src="{{ asset('assets/js/plugins/bootstrap-timepicker.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2.full.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/js/bootstrap-iconpicker.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/js/bootstrap-iconpicker.bundle.min.js">
+    </script>
 
 
     <!-- Template JS File -->
@@ -95,7 +111,9 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+        integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
@@ -143,7 +161,9 @@
                         $.ajax({
                             type: "DELETE",
                             url: deleteUrl,
-                            data: {_token: "{{csrf_token()}}"},
+                            data: {
+                                _token: "{{ csrf_token() }}"
+                            },
                             success: function(data) {
                                 if (data.status == 'error') {
                                     Swal.fire(
@@ -173,6 +193,13 @@
         })
     </script>
 
+    <script>
+    $('.input-daterange input').each(function() {
+        $(this).datepicker({
+            format: 'yyyy/mm/dd'
+        }).datepicker();
+    });
+</script>
 
 
     @stack('scripts')
