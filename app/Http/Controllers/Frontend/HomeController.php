@@ -18,6 +18,7 @@ use App\Models\PersonalGrowthSectionSetting;
 use App\Models\PortfolioItem;
 use App\Models\PortfolioSectionSetting;
 use App\Models\Service;
+use App\Models\ServiceSectionSetting;
 use App\Models\SkillItem;
 use App\Models\SkillSectionSetting;
 use App\Models\TyperTitle;
@@ -36,6 +37,8 @@ class HomeController extends Controller
         $about = About::first();
         $portfolioTitle = PortfolioSectionSetting::first();
         $personalTitle = PersonalGrowthSectionSetting::first();
+        $serviceTitle = ServiceSectionSetting::first();
+
         $portfolioCategories = Category::all();
         $portfolioItems = PortfolioItem::all();
         $skillSection = SkillSectionSetting::first();
@@ -59,6 +62,7 @@ class HomeController extends Controller
                 'portfolioCategories',
                 'portfolioItems',
                 'personalTitle',
+                'serviceTitle',
                 'skillSection',
                 'skillProgram',
                 'experience',

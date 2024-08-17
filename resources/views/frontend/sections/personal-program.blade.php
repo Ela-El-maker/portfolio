@@ -1,15 +1,15 @@
  <section class="service-area section-padding-top" id="about-page">
      <div class="container">
-     <div class="row">
-            <div class="col-lg-6 offset-lg-3 text-center">
-                <div class="section-title">
-                    <h3 class="title">{{ $personalTitle->title }}</h3>
-                    <div class="desc">
-                        <p>{{ $personalTitle->sub_title }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+         <div class="row">
+             <div class="col-lg-6 offset-lg-3 text-center">
+                 <div class="section-title">
+                     <h3 class="title">{{ $personalTitle->title }}</h3>
+                     <div class="desc">
+                         <p>{{ $personalTitle->sub_title }}</p>
+                     </div>
+                 </div>
+             </div>
+         </div>
          <div class="row">
              @foreach ($personalGrowth as $personal)
                  <div class="col-lg-4 {{ $loop->index > 2 ? 'mt-4' : '' }}">
