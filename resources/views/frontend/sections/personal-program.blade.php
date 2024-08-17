@@ -17,28 +17,11 @@
                          <h3 class="title wow fadeInRight" data-wow-delay="0.3s">{{ $personal->name }}</h3>
                          <div class="desc wow fadeInRight" data-wow-delay="0.4s">
                              <p>{{ $personal->description }}</p>
+                             <p class="poetic-description">Start by: {{ $personal->startDate }}</p>
+                             <p class="poetic-description">Due by: {{ $personal->dueDate }}</p>
+
                          </div>
-                         {{-- <h5 class="title wow fadeInRight" data-wow-delay="0.3s">Start Date: {{ $personal->startDate }}
-                         </h5>
-                         <h5 class="title wow fadeInRight" data-wow-delay="0.3s">Due Date: {{ $personal->dueDate }}</h5> --}}
-                         <div class="countdown-timer">
-                             <div class="countdown-unit">
-                                 <span class="number" id="days-{{ $loop->index }}"></span>
-                                 <span class="label">Days</span>
-                             </div>
-                             <div class="countdown-unit">
-                                 <span class="number" id="hours-{{ $loop->index }}"></span>
-                                 <span class="label">Hours</span>
-                             </div>
-                             <div class="countdown-unit">
-                                 <span class="number" id="minutes-{{ $loop->index }}"></span>
-                                 <span class="label">Minutes</span>
-                             </div>
-                             <div class="countdown-unit">
-                                 <span class="number" id="seconds-{{ $loop->index }}"></span>
-                                 <span class="label">Seconds</span>
-                             </div>
-                         </div>
+
                      </div>
                  </div>
              @endforeach

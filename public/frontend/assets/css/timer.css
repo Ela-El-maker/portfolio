@@ -24,3 +24,25 @@
     font-size: 0.8em;
     color: #999;
 }
+
+.poetic-description {
+    font-style: italic;
+    color: #e60909;
+}
+
+.countdown-unit {
+    display: inline-block;
+    margin: 0 10px;
+    text-align: center;
+}
+.number {
+    font-size: 2em;
+    display: block;
+}
+.label {
+    font-size: 1em;
+}
+.poetic-description {
+    font-style: italic;
+    color: #d10b0b;
+}

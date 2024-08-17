@@ -14,32 +14,16 @@
          <div class="row">
              @foreach ($bucketListGrowth as $bucket)
                  <div class="col-lg-4 {{ $loop->index > 2 ? 'mt-4' : '' }}">
-                     <div class="single-service" data-target-date="{{ $bucket->startDate }}">
+                     <div class="single-service" >
                          <h3 class="title wow fadeInRight" data-wow-delay="0.3s">{{ $bucket->name }}</h3>
                          <div class="desc wow fadeInRight" data-wow-delay="0.4s">
                              <p>{{ $bucket->description }}</p>
+                        <p class="poetic-description">Start by: {{ $bucket->startDate }}</p>
+
                          </div>
-                         {{-- <h5 class="title wow fadeInRight" data-wow-delay="0.3s">Start Date: {{ $bucket->startDate }}
-                         </h5> --}}
+
                          {{-- <h5 class="title wow fadeInRight" data-wow-delay="0.3s">Due Date: {{ $personal->dueDate }}</h5> --}}
-                         <div class="countdown-timer">
-                             <div class="countdown-unit">
-                                 <span class="number" id="days-{{ $loop->index }}"></span>
-                                 <span class="label">Days</span>
-                             </div>
-                             <div class="countdown-unit">
-                                 <span class="number" id="hours-{{ $loop->index }}"></span>
-                                 <span class="label">Hours</span>
-                             </div>
-                             <div class="countdown-unit">
-                                 <span class="number" id="minutes-{{ $loop->index }}"></span>
-                                 <span class="label">Minutes</span>
-                             </div>
-                             <div class="countdown-unit">
-                                 <span class="number" id="seconds-{{ $loop->index }}"></span>
-                                 <span class="label">Seconds</span>
-                             </div>
-                         </div>
+                         
                      </div>
                  </div>
              @endforeach

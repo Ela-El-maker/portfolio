@@ -24,6 +24,7 @@ use App\Models\ServiceSectionSetting;
 use App\Models\SkillItem;
 use App\Models\SkillSectionSetting;
 use App\Models\TyperTitle;
+use App\Models\WorkingOn;
 use App\Models\WorkingOnSectionSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -38,6 +39,7 @@ class HomeController extends Controller
         $services = Service::all();
         $personalGrowth = PersonalGrowth::all();
         $bucketListGrowth = BucketList::all();
+        $workingsGrowth = WorkingOn::all();
         $about = About::first();
         $portfolioTitle = PortfolioSectionSetting::first();
         $personalTitle = PersonalGrowthSectionSetting::first();
@@ -69,6 +71,7 @@ class HomeController extends Controller
                 'personalTitle',
                 'serviceTitle',
                 'workingOnTitle',
+                'workingsGrowth',
                 'bucketlistTitle',
                 'bucketListGrowth',
                 'skillSection',

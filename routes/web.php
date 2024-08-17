@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SkillItemController;
 use App\Http\Controllers\Admin\SkillSectionSettingController;
 use App\Http\Controllers\Admin\TyperTitleController;
+use App\Http\Controllers\Admin\WorkingOnController;
 use App\Http\Controllers\Admin\WorkingOnSectionSettingController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Redis;
@@ -104,6 +105,9 @@ Route::group([
 
     /***CareerGrowth Route* */
     Route::resource('bucket-list', BucketListController::class);
+
+    /***CareerGrowth Route* */
+    Route::resource('working-on', WorkingOnController::class);
 
 
     /***PersonalGrowth Route* */

@@ -96,26 +96,26 @@
                                 class="fas fa-fire"></i>Section Setting</a>
                     </li>
 
-                    <li><a class="nav-link" href=""><i
+                    <li><a class="nav-link" href="{{ route('admin.working-on.index') }}"><i
                                 class="fas fa-fire"></i>Working On Now</a>
                     </li>
                 </ul>
             </li>
 
 
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Career Development</span></a>
                 <ul class="dropdown-menu" style="display: none;">
                     {{-- <li><a class="nav-link" href="{{ route('admin.service.index') }}"><i
                                 class="fas fa-fire"></i>Career Section Setting</a>
-                    </li> --}}
+                    </li> 
 
                     <li><a class="nav-link" href="{{ route('admin.service.index') }}"><i class="fas fa-fire"></i>Career
                             Growth</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
