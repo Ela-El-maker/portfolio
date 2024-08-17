@@ -11,6 +11,14 @@
 		@include('frontend.sections.service')
 		<!-- Service-Area-End -->
 
+		<!-- Future-Area-Start -->
+		@include('frontend.sections.future')
+		<!-- Future-Area-End -->
+
+		<!-- Now-Area-Start -->
+		@include('frontend.sections.now')
+		<!-- Now-Area-End -->
+
 		<!-- growth-Area-Start -->
 		@include('frontend.sections.personal-program')
 		<!-- growth-Area-End -->

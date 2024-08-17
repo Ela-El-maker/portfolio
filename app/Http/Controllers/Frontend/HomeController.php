@@ -7,6 +7,7 @@ use App\Mail\ContactMail;
 use App\Models\About;
 use App\Models\Blog;
 use App\Models\BlogSectionSetting;
+use App\Models\BucketListSectionSetting;
 use App\Models\Category;
 use App\Models\ContactSectionSetting;
 use App\Models\Experience;
@@ -22,6 +23,7 @@ use App\Models\ServiceSectionSetting;
 use App\Models\SkillItem;
 use App\Models\SkillSectionSetting;
 use App\Models\TyperTitle;
+use App\Models\WorkingOnSectionSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -38,7 +40,8 @@ class HomeController extends Controller
         $portfolioTitle = PortfolioSectionSetting::first();
         $personalTitle = PersonalGrowthSectionSetting::first();
         $serviceTitle = ServiceSectionSetting::first();
-
+        $workingOnTitle = WorkingOnSectionSetting::first();
+        $bucketlistTitle = BucketListSectionSetting::first();
         $portfolioCategories = Category::all();
         $portfolioItems = PortfolioItem::all();
         $skillSection = SkillSectionSetting::first();
@@ -63,6 +66,8 @@ class HomeController extends Controller
                 'portfolioItems',
                 'personalTitle',
                 'serviceTitle',
+                'workingOnTitle',
+                'bucketlistTitle',
                 'skillSection',
                 'skillProgram',
                 'experience',

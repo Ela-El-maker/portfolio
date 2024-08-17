@@ -74,6 +74,34 @@
                 </ul>
             </li>
 
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>BucketList </span></a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li><a class="nav-link" href="{{ route('admin.bucket-list-section-setting.index') }}"><i
+                                class="fas fa-fire"></i>Section Setting</a>
+                    </li>
+
+                    <li><a class="nav-link" href=""><i
+                                class="fas fa-fire"></i>BucketList Projects</a>
+                    </li>
+                </ul>
+            </li>
+
+                     <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Working On </span></a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li><a class="nav-link" href="{{ route('admin.working-on-section-setting.index') }}"><i
+                                class="fas fa-fire"></i>Section Setting</a>
+                    </li>
+
+                    <li><a class="nav-link" href=""><i
+                                class="fas fa-fire"></i>Working On Now</a>
+                    </li>
+                </ul>
+            </li>
+
 
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
