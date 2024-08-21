@@ -33,7 +33,8 @@ use App\Http\Controllers\Admin\SkillSectionSettingController;
 use App\Http\Controllers\Admin\TyperTitleController;
 use App\Http\Controllers\Admin\WorkingOnController;
 use App\Http\Controllers\Admin\WorkingOnSectionSettingController;
-use App\Http\Controllers\Frontend\ContactMessageController;
+use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Frontend\ContactMessageController as FrontendContactMessageController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
@@ -63,8 +64,12 @@ Route::get('/portfolio-details', function () {
     return view('frontend.portfolio-details');
 });
 
- /***About Route* */
- Route::resource('contact-form', ContactMessageController::class);
+ /***Contact Route* */
+//  Route::resource('contact-form', ContactMessageController::class);
+
+Route::get('/contact',[ContactMessageController::class, 'contactUs'])->name('contact.us');
+Route::post('/store/contact',[ContactMessageController::class, 'storeContact'])->name('store.contact');
+
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -84,7 +89,7 @@ Route::get('blog-details/{id}', [HomeController::class, 'showBlog'])->name('show
 
 Route::get('blogs', [HomeController::class, 'blog'])->name('blog');
 
-Route::post('contact', [HomeController::class, 'contact'])->name('contact');
+// Route::post('contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('resume/download', [AboutController::class, 'resumeDownload'])->name('resume.download');
 
 
@@ -96,6 +101,14 @@ Route::group([
 ], function () {
     Route::resource('hero', HeroController::class);
     Route::resource('typer-title', TyperTitleController::class);
+
+
+
+    // Contact Routes
+    Route::get('/get/contacts',[ContactMessageController::class, 'getMessages'])->name('get.messages');
+    Route::delete('/delete/contacts/{id}',[ContactMessageController::class, 'deleteMessages'])->name('delete.messages');
+    Route::get('/show/contacts/{id}',[ContactMessageController::class, 'showMessage'])->name('show.message');
+
 
     /***Service Route* */
     Route::resource('service', ServiceController::class);

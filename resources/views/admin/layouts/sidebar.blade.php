@@ -181,7 +181,7 @@
                     <li><a class="nav-link" href="{{ route('admin.contact-section-setting.index') }}">Contact Section
                             Setting </a></li>
 
-            <li><a class="nav-link" href="{{ route('contact-form.index') }}"><i class="fas fa-fire"></i> <span>Received Messages</span></a></li>
+            <li><a class="nav-link" href="{{ route('admin.get.messages') }}"><i class="fas fa-fire"></i> <span>Received Messages</span></a></li>
                     
 
                 </ul>

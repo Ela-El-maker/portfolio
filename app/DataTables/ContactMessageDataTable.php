@@ -24,7 +24,7 @@ class ContactMessageDataTable extends DataTable
         return (new EloquentDataTable($query))
            
         ->addColumn('action', function($query){
-            return '<a href="'.route('contact-form.show', $query->id).'" class="btn btn-primary"><i class="fas fa-info"></i></a> <a href="'.route('contact-form.destroy', $query->id).'" class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>';
+            return '<a href="'.route('admin.show.message', $query->id).'" class="btn btn-primary"><i class="fas fa-info"></i></a> <a href="'.route('admin.delete.messages', $query->id).'" class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>';
         })
         ->setRowId('id');
     }

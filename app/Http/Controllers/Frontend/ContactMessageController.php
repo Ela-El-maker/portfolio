@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\DataTables\ContactMessageDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\ContactMessage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ContactMessageController extends Controller
@@ -28,6 +29,7 @@ class ContactMessageController extends Controller
         return view('frontend.sections.contact');
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
@@ -42,11 +44,13 @@ class ContactMessageController extends Controller
     ]);
 
     // Create a new ContactMessage instance and save to the database
-    ContactMessage::create([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'subject' => $request->input('subject'),
-        'message' => $request->input('message'),
+    ContactMessage::insert([
+        'name' => $request ->name,
+        'email' => $request ->email,
+        'subject' => $request ->subject,
+        'message'=>$request->message,
+        'created_at' => Carbon::now(),
+
     ]);
 
     // Return a JSON response

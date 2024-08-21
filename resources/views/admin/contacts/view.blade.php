@@ -4,7 +4,7 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('contact-form.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('admin.get.messages') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
             <h1>Received Message Section</h1>
 
@@ -33,12 +33,12 @@
                                 </div>
 
                                 <div class="mb-3 row">
-    <label for="name" class="col-sm-2 col-form-label">Sent On : </label>
-    <div class="col-sm-10">
-        <input type="text" readonly class="form-control-plaintext" id="created-at"
-            value="{{ $contactMessage->created_at->format('Y-m-d H:i:s') }}">
-    </div>
-</div>
+                                    <label for="name" class="col-sm-2 col-form-label">Sent On : </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" readonly class="form-control-plaintext" id="created-at"
+                                            value="{{ $contactMessage->created_at->format('Y-m-d H:i:s') }}">
+                                    </div>
+                                </div>
 
 
                                 <div class="mb-3 row">

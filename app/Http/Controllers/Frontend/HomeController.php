@@ -116,18 +116,18 @@ class HomeController extends Controller
         return view('frontend.blog', compact('blogs'));
     }
 
-    public function contact(Request $request){
-        // dd($request->all());
-        $request->validate([
-            'name' => ['required', 'max:200'],
-            'subject' => ['required', 'max:300'],
-            'email' => ['required', 'email'],
-            'message' => ['required', 'max:2000'],
+    // public function contact(Request $request){
+    //     // dd($request->all());
+    //     $request->validate([
+    //         'name' => ['required', 'max:200'],
+    //         'subject' => ['required', 'max:300'],
+    //         'email' => ['required', 'email'],
+    //         'message' => ['required', 'max:2000'],
 
-        ]);
+    //     ]);
 
-        Mail::send(new ContactMail($request->all()));
+    //     Mail::send(new ContactMail($request->all()));
 
-        return response(['status' => 'success', 'message' => 'Mail Sent Successfully!']);
-    }
+    //     return response(['status' => 'success', 'message' => 'Mail Sent Successfully!']);
+    // }
 }
