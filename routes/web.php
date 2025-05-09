@@ -101,6 +101,7 @@ Route::group([
 ], function () {
     Route::resource('hero', HeroController::class);
     Route::resource('typer-title', TyperTitleController::class);
+    Route::post('typer-title/toggle/{id}', [TyperTitleController::class, 'toggleStatus'])->name('typer-title.toggle');
 
 
 

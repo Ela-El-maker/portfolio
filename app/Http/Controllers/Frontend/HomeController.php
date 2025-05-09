@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function index()
     {
         $hero = Hero::first();
-        $typerTitles = TyperTitle::all();
+        $typerTitles = TyperTitle::where('show', 1)->get();
         $services = Service::all();
         $personalGrowth = PersonalGrowth::all();
         $bucketListGrowth = BucketList::all();
@@ -56,7 +56,7 @@ class HomeController extends Controller
         $blogs = Blog::latest()->take(4)->get();
         $blogTitle = BlogSectionSetting::first();
         $contactTitle = ContactSectionSetting::first();
-        
+
         return view(
             'frontend.home',
             compact(

@@ -15,9 +15,8 @@ class TyperTitleController extends Controller
     public function index(TyperTitleDataTable $dataTable)
     {
         // return view('admin.typer-title.index');
-        
-        return $dataTable->render('admin.typer-title.index');
 
+        return $dataTable->render('admin.typer-title.index');
     }
 
     /**
@@ -27,7 +26,6 @@ class TyperTitleController extends Controller
     {
         //
         return view('admin.typer-title.create');
-
     }
 
     /**
@@ -41,9 +39,9 @@ class TyperTitleController extends Controller
         ]);
 
         $create = new TyperTitle();
-        $create -> title = $request ->title;
+        $create->title = $request->title;
 
-        $create ->save();
+        $create->save();
 
         toastr()->success('Typer Title Created Successfully!', 'Congrats');
         return redirect()->route('admin.typer-title.index');
@@ -73,18 +71,26 @@ class TyperTitleController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $request ->validate([
+        $request->validate([
             'title' => ['required', 'max:200'],
         ]);
 
         $edit = TyperTitle::findorfail($id);
-        $edit -> title = $request ->title;
+        $edit->title = $request->title;
 
-        $edit ->save();
+        $edit->save();
 
         toastr()->success('Typer Title Updated Successfully!', 'Congrats');
         return redirect()->route('admin.typer-title.index');
+    }
 
+    public function toggleStatus(Request $request, $id)
+    {
+        $title = TyperTitle::findOrFail($id);
+        $title->show = $request->input('status') == 1;
+        $title->save();
+
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -95,6 +101,5 @@ class TyperTitleController extends Controller
         //
         $title = TyperTitle::findorfail($id);
         $title->delete();
-        
     }
 }

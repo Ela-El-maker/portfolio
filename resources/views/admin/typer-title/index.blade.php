@@ -23,7 +23,7 @@
                                 <a href="{{ route('admin.typer-title.create') }}" class="btn btn-success">Create New <i class="fas fa-plus"></i></a>
                             </div>
                         </div>
-                        
+
                         <div class="card-body">
                             {{ $dataTable->table() }}
                         </div>
@@ -35,5 +35,33 @@
 @endsection
 
 @push('scripts')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+{{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+
+<script>
+    $(document).on('change', '.typer_title_status', function () {
+        const checkbox = $(this);
+        const id = checkbox.data('id');
+        const status = checkbox.is(':checked') ? 1 : 0;
+
+        $.ajax({
+            url: '{{ route('admin.typer-title.toggle', ':id') }}'.replace(':id', id),
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                status: status
+            },
+            success: function (response) {
+                if (response.success) {
+                    location.reload(); // ✅ Reloads the page after successful toggle
+                } else {
+                    toastr.error('Failed to update status');
+                }
+            },
+            error: function () {
+                toastr.error('An error occurred');
+            }
+        });
+    });
+</script>
 @endpush
+

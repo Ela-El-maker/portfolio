@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('typer_titles', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->boolean('show')->nullable()->default(null);
             $table->timestamps();
         });
     }

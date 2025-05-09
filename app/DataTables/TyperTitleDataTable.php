@@ -22,11 +22,28 @@ class TyperTitleDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function($query){
-                return '<a href="'.route('admin.typer-title.edit', $query->id).'" class="btn btn-primary"><i class="fas fa-edit"></i></a> <a href="'.route('admin.typer-title.destroy', $query->id).'" class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>';
+            ->addColumn('show_badge', function ($query) {
+                $class = $query->show ? 'badge-primary' : 'badge-danger';
+                $text = $query->show ? 'Yes' : 'No';
+                return '<span class="badge ' . $class . '" data-column="show_badge">' . $text . '</span>';
             })
-            ->setRowId('id');
+
+            ->addColumn('show_toggle', function ($query) {
+                $checked = $query->show ? 'checked' : '';
+                return '
+                <label class="custom-switch mt-0">
+                    <input type="checkbox" class="custom-switch-input typer_title_status" data-id="' . $query->id . '" ' . $checked . '>
+                    <span class="custom-switch-indicator"></span>
+                </label>';
+            })
+            ->addColumn('action', function ($query) {
+                return '<a href="' . route('admin.typer-title.edit', $query->id) . '" class="btn btn-primary"><i class="fas fa-edit"></i></a> <a href="' . route('admin.typer-title.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>';
+            })
+            ->setRowId('id')
+            ->rawColumns(['show_badge', 'show_toggle', 'action']); // ✅ Important
     }
+
+
 
     /**
      * Get the query source of dataTable.
@@ -42,20 +59,20 @@ class TyperTitleDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('typertitle-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(0)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        // Button::make('excel'),
-                        // Button::make('csv'),
-                        // Button::make('pdf'),
-                        // Button::make('print'),
-                        // Button::make('reset'),
-                        // Button::make('reload')
-                    ]);
+            ->setTableId('typertitle-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                // Button::make('excel'),
+                // Button::make('csv'),
+                // Button::make('pdf'),
+                // Button::make('print'),
+                // Button::make('reset'),
+                // Button::make('reload')
+            ]);
     }
 
     /**
@@ -64,18 +81,31 @@ class TyperTitleDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            
             Column::make('id')->width(50),
             Column::make('title'),
+
+            // Show badge (Yes/No)
+            Column::computed('show_badge')
+                ->title('Visible')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+
+            // Toggle switch
+            Column::computed('show_toggle')
+                ->title('Toggle')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(200)
-                  ->addClass('text-center'),
-            // Column::make('created_at'),
-            // Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(200)
+                ->addClass('text-center'),
         ];
     }
+
 
     /**
      * Get the filename for export.
