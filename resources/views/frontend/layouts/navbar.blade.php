@@ -7,7 +7,7 @@
 <nav class="navbar navbar-expand-lg main_menu" id="main_menu_area">
     <div class="container">
         <a class="navbar-brand" href="{{url('/')}}">
-            <img src="{{asset($generalSetting->logo)}}" alt="Rabins">
+            <img src="{{asset($generalSetting?->logo)}}" alt="Rabins">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
 
                     <li class="nav-item">
                     <a class="nav-link" href="#about-page">About</a>
-                </li> 
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#skills-page">Skills</a>
                 </li>
@@ -39,11 +39,11 @@
                     </ul> --}}
                 </li>
                 @endif
-                
-                
-               
-                
-               
+
+
+
+
+
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="{{route('blog')}}">Blog</a>
                 </li> --}}
