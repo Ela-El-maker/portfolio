@@ -22,21 +22,54 @@ class PortfolioItemDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('image', function($query){
-                return '<img style="width:70px" src = "'.asset($query->image).'"></img>';
+
+            ->addColumn('status_badge', function ($query) {
+                switch ($query->status) {
+                    case 'draft':
+                        $class = 'badge-warning';
+                        break;
+                    case 'published':
+                        $class = 'badge-info';
+                        break;
+
+                    default:
+                        $class = 'badge-secondary';
+                        break;
+                }
+
+                return '<span class="badge ' . $class . '">' . ucfirst($query->status) . '</span>';
             })
-            ->addColumn('created_at', function($query){
+
+            ->addColumn('show_badge', function ($query) {
+                $class = $query->show ? 'badge-primary' : 'badge-danger';
+                $text = $query->show ? 'Yes' : 'No';
+                return '<span class="badge ' . $class . '" data-column="show_badge">' . $text . '</span>';
+            })
+
+            ->addColumn('show_toggle', function ($query) {
+                $checked = $query->show ? 'checked' : '';
+                return '
+                <label class="custom-switch mt-0">
+                    <input type="checkbox" class="custom-switch-input portfolio-item_status" data-id="' . $query->id . '" ' . $checked . '>
+                    <span class="custom-switch-indicator"></span>
+                </label>';
+            })
+
+
+            ->addColumn('image', function ($query) {
+                return '<img style="width:70px" src = "' . asset($query->image) . '"></img>';
+            })
+            ->addColumn('created_at', function ($query) {
                 return date('d-m-Y', strtotime($query->created_at));
             })
-            ->addColumn('category', function($query){
-                return $query -> category->name;
+            ->addColumn('category', function ($query) {
+                return $query->category->name;
             })
             ->addColumn('action', function ($query) {
                 return '<a href="' . route('admin.portfolio-item.edit', $query->id) . '" class="btn btn-primary"><i class="fas fa-edit"></i></a> <a href="' . route('admin.portfolio-item.destroy', $query->id) . '" class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>';
             })
-            ->rawColumns(['image','action'])
-            ->setRowId('id');
-            
+            ->setRowId('id')
+            ->rawColumns(['show_badge', 'image', 'show_toggle', 'status_badge', 'action']);
     }
 
     /**
@@ -77,10 +110,28 @@ class PortfolioItemDataTable extends DataTable
         return [
 
             Column::make('id'),
-            Column::make('image')->width(200),
+            Column::make('image')->width(100),
             Column::make('title'),
             Column::make('category'),
-            Column::make('created_at'),
+            Column::computed('status_badge')
+                ->title('Status')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+            // Show badge (Yes/No)
+            Column::computed('show_badge')
+                ->title('Visible')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+
+            // Toggle switch
+            Column::computed('show_toggle')
+                ->title('Toggle')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+            // Column::make('created_at'),
             // Column::make('client'),
             // Column::make('website'),
             Column::computed('action')
@@ -89,7 +140,7 @@ class PortfolioItemDataTable extends DataTable
                 ->width(200)
                 ->addClass('text-center'),
 
-            
+
             // Column::make('updated_at'),
         ];
     }

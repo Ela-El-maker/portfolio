@@ -61,8 +61,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="copyright">
-                        <p>Copyright {{date('Y', strtotime($footerInfo?->created_at))}} <span>{{$footerInfo?->copyright}}</span>. All Rights Reserved.</p>
-                        <p>Powered by {{$footerInfo?->copyright}} &nbsp; | &nbsp; {{date('d M, Y', strtotime($footerInfo?->created_at))}}</p>
+                        <p>{{ $footerInfo?->copyright }}</p>
+                        <p>{{$footerInfo?->powered_by}} &nbsp; | &nbsp; {{ \Carbon\Carbon::today()->format('F j, Y') }}</p>
                     </div>
                 </div>
             </div>

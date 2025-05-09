@@ -35,14 +35,14 @@ class FeedbackController extends Controller
         //
         $request ->validate([
             'name' => ['required', 'max:100'],
-            'position' => ['', 'max:100'],
+            'company' => ['', 'max:100'],
             'description'=> ['required','max:1000']
         ]);
 
         $feedback = new Feedback();
 
         $feedback->name = $request->name;
-        $feedback->position = $request->position;
+        $feedback->company = $request->company;
         $feedback->description = $request->description;
 
         $feedback ->save();
@@ -56,6 +56,8 @@ class FeedbackController extends Controller
     public function show(string $id)
     {
         //
+        $feedback = Feedback::findOrFail($id);
+        return view('admin.feedback.show', compact('feedback'));
     }
 
     /**
@@ -77,14 +79,14 @@ class FeedbackController extends Controller
         //
         $request ->validate([
             'name' => ['required', 'max:100'],
-            'position' => ['', 'max:100'],
+            'company' => ['', 'max:100'],
             'description'=> ['required','max:1000']
         ]);
 
         $feedback =  Feedback::findorfail($id);
 
         $feedback->name = $request->name;
-        $feedback->position = $request->position;
+        $feedback->company = $request->company;
         $feedback->description = $request->description;
 
         $feedback ->save();
@@ -92,6 +94,14 @@ class FeedbackController extends Controller
         return redirect()->route('admin.feedback.index');
     }
 
+       public function toggleStatus(Request $request, $id)
+    {
+        $item = Feedback::findOrFail($id);
+        $item->show = $request->input('status') == 1;
+        $item->save();
+
+        return response()->json(['success' => true]);
+    }
     /**
      * Remove the specified resource from storage.
      */

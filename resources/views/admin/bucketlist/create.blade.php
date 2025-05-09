@@ -38,22 +38,32 @@
                                     </div>
                                 </div>
 
-                               
+
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Start Date</label>
-                                    
-                                     <div class="col-sm-12 col-md-7">
-                                     <div class="input-group input-daterange">
-                                   
-                                        <input type="text" class="form-control" name="startDate" value="">
+
+                                    <div class="col-sm-12 col-md-7">
+                                        <div class="input-group input-daterange">
+
+                                            <input type="text" class="form-control" name="startDate" value="">
+                                        </div>
                                     </div>
-                                    </div>
-        
 
                                 </div>
 
-                                
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <select name="status" class="form-control selectric">
+
+                                            <option>Select</option>
+                                            <option value="draft">Draft</option>
+                                            <option value="published">Published</option>
+                                        
+                                        </select>
+                                    </div>
+                                </div>
 
 
                                 <div class="form-group row mb-4">

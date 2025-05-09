@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->string('company')->nullable();
             $table->text('subject');
             $table->text('message');
+            $table->boolean('show')->nullable()->default(null);
             $table->timestamps();
         });
     }

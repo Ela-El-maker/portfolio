@@ -22,7 +22,7 @@ class ContactMessageDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-           
+
         ->addColumn('action', function($query){
             return '<a href="'.route('admin.show.message', $query->id).'" class="btn btn-primary"><i class="fas fa-info"></i></a> <a href="'.route('admin.delete.messages', $query->id).'" class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>';
         })
@@ -69,6 +69,7 @@ class ContactMessageDataTable extends DataTable
             Column::make('name')->width(300),
             Column::make('email'),
             Column::make('subject'),
+            Column::make('company'),
 
             // Column::make('created_at'),
             // Column::make('updated_at'),

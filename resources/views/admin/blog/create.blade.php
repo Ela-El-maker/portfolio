@@ -23,7 +23,7 @@
                         <div class="card-body">
                             <form action="{{route('admin.blog.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                            
+
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
@@ -46,12 +46,12 @@
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
                                     <div class="col-sm-12 col-md-7">
                                       <select name="category_id" class="form-control selectric">
-                                        
+
                                         <option>Select</option>
                                         @foreach ($categories as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
-                                        
+
                                       </select>
                                     </div>
                                   </div>
@@ -62,7 +62,20 @@
                                         <textarea name="description" class="summernote"></textarea>
                                     </div>
                                 </div>
-                       
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <select name="status" class="form-control selectric">
+
+                                            <option>Select</option>
+                                            <option value="draft">Draft</option>
+                                            <option value="published">Published</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                 
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>

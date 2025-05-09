@@ -33,23 +33,30 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-        // dd($request->all());
+        // Validate the incoming data
         $request->validate([
             'name' => ['required', 'max:100'],
             'description' => ['required', 'max:400'],
+            'status' => ['required', 'in:planning,inprogress,completed'], // Ensure status is one of the enum values
+
         ]);
 
+        // Create a new Service instance
         $service = new Service();
-        $service->name = $request-> name;
-        $service->description = $request-> description;
+        $service->name = $request->name;
+        $service->description = $request->description;
+        $service->status = $request->status; // Set the status
+
+        // Save the service to the database
         $service->save();
 
+        // Display success message
         toastr()->success('Service Created Successfully', 'Congrats');
-        return redirect()->route('admin.service.index');
 
+        // Redirect to the service index page
+        return redirect()->route('admin.service.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -79,16 +86,28 @@ class ServiceController extends Controller
         $request->validate([
             'name' => ['required', 'max:100'],
             'description' => ['required', 'max:400'],
+            'status' => ['required', 'in:planning,inprogress,completed'],
         ]);
 
         $service = Service::findorfail($id);
-        $service->name = $request-> name;
-        $service->description = $request-> description;
+        $service->name = $request->name;
+        $service->description = $request->description;
+        $service->status = $request->status;
         $service->save();
 
         toastr()->success('Service Updated Successfully', 'Congrats');
         return redirect()->route('admin.service.index');
     }
+
+     public function toggleStatus(Request $request, $id)
+    {
+        $service = Service::findOrFail($id);
+        $service->show = $request->input('status') == 1;
+        $service->save();
+
+        return response()->json(['success' => true]);
+    }
+
 
     /**
      * Remove the specified resource from storage.

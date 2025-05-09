@@ -28,7 +28,8 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="name" class="form-control" value="{{ $editBuckelist->name }}">
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ $editBuckelist->name }}">
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
@@ -38,22 +39,35 @@
                                     </div>
                                 </div>
 
-                               
+
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Start Date</label>
-                                    
-                                     <div class="col-sm-12 col-md-7">
-                                     <div class="input-group input-daterange">
-                                   
-                                        <input type="text" class="form-control" name="startDate" value="{{ $editBuckelist->startDate }}">
+
+                                    <div class="col-sm-12 col-md-7">
+                                        <div class="input-group input-daterange">
+
+                                            <input type="text" class="form-control" name="startDate"
+                                                value="{{ $editBuckelist->startDate }}">
+                                        </div>
                                     </div>
-                                    </div>
-        
+
 
                                 </div>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <select name="status" class="form-control selectric">
+                                            <option value="draft"
+                                                {{ old('status', $editBuckelist->status) == 'draft' ? 'selected' : '' }}>
+                                                Draft</option>
+                                            <option value="published"
+                                                {{ old('status', $editBuckelist->status) == 'published' ? 'selected' : '' }}>
+                                                Published</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                                
 
 
                                 <div class="form-group row mb-4">

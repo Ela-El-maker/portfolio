@@ -10,6 +10,7 @@ use App\Models\BlogSectionSetting;
 use App\Models\BucketList;
 use App\Models\BucketListSectionSetting;
 use App\Models\Category;
+use App\Models\ContactMessage;
 use App\Models\ContactSectionSetting;
 use App\Models\Experience;
 use App\Models\Feedback;
@@ -36,10 +37,10 @@ class HomeController extends Controller
     {
         $hero = Hero::first();
         $typerTitles = TyperTitle::where('show', 1)->get();
-        $services = Service::all();
-        $personalGrowth = PersonalGrowth::all();
-        $bucketListGrowth = BucketList::all();
-        $workingsGrowth = WorkingOn::all();
+        $services = Service::where(['show' => 1])->get();
+        $personalGrowth = PersonalGrowth::where(['status' => 'published', 'show' => 1])->latest()->take(3)->get();
+        $bucketListGrowth = BucketList::where(['status' => 'published', 'show' => 1])->latest()->take(3)->get();
+        $workingsGrowth = WorkingOn::where(['status' => 'published', 'show' => 1])->latest()->take(3)->get();
         $about = About::first();
         $portfolioTitle = PortfolioSectionSetting::first();
         $personalTitle = PersonalGrowthSectionSetting::first();
@@ -47,13 +48,13 @@ class HomeController extends Controller
         $workingOnTitle = WorkingOnSectionSetting::first();
         $bucketlistTitle = BucketListSectionSetting::first();
         $portfolioCategories = Category::all();
-        $portfolioItems = PortfolioItem::all();
+        $portfolioItems = PortfolioItem::where(['status' => 'published', 'show' => 1])->latest()->take(3)->get();
         $skillSection = SkillSectionSetting::first();
-        $skillProgram= SkillItem::all();
+        $skillProgram = SkillItem::all();
         $experience = Experience::first();
-        $feedbacks = Feedback::all();
+        $feedbacks = ContactMessage::where(['show' => 1])->latest()->get();
         $feedbackSection = FeedbacksectionSetting::first();
-        $blogs = Blog::latest()->take(4)->get();
+        $blogs = Blog::where(['status' => 'published', 'show' => 1])->latest()->take(4)->get();
         $blogTitle = BlogSectionSetting::first();
         $contactTitle = ContactSectionSetting::first();
 
@@ -88,18 +89,40 @@ class HomeController extends Controller
 
     public function showPortfolio($id)
     {
-        $portfolio = PortfolioItem::findorfail($id);
+        $portfolio = PortfolioItem::where('id', $id)
+            ->where('status', 'published') // or 'visible' depending on your model
+            ->firstOrFail();
+
         return view('frontend.portfolio-details', compact('portfolio'));
     }
 
+
     public function showBlog($id)
     {
-        $blog = Blog::findorfail($id);
-        $previousPost = Blog::where('id','<',$blog->id)->orderBy('id','desc')->first();
-        $nextPost = Blog::where('id','>',$blog->id)->orderBy('id','asc')->first();
+        // Get the main blog post, ensure it's published and visible
+        $blog = Blog::where('id', $id)
+            ->where('status', 'published')
+            ->where('show', 1)
+            ->firstOrFail();
 
-        return view('frontend.blog-details', compact('blog','previousPost','nextPost'));
+        // Get the previous post
+        $previousPost = Blog::where('status', 'published')
+            ->where('show', 1)
+            ->where('id', '<', $blog->id)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        // Get the next post
+        $nextPost = Blog::where('status', 'published')
+            ->where('show', 1)
+            ->where('id', '>', $blog->id)
+            ->orderBy('id', 'asc')
+            ->first();
+
+        return view('frontend.blog-details', compact('blog', 'previousPost', 'nextPost'));
     }
+
+
 
     // public function  portfolio()
     // {
@@ -112,7 +135,7 @@ class HomeController extends Controller
 
     public function  blog()
     {
-        $blogs = Blog::latest()->paginate(6);
+        $blogs = Blog::where(['status' => 'published', 'show' => 1])->latest()->paginate(6);
         return view('frontend.blog', compact('blogs'));
     }
 

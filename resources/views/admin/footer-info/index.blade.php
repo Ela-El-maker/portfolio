@@ -27,7 +27,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Sub Title</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="info" id="" cols="30" rows="10" class="form-control" style="height: 100px">{!!$footerInfo->info!!}</textarea>
+                                        <textarea name="info" id="" cols="30" rows="10" class="form-control" style="height: 100px">{!!$footerInfo?->info!!}</textarea>
                                     </div>
                                 </div>
 
@@ -35,7 +35,7 @@
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Copy right</label>
                                     <div class="col-sm-12 col-md-7">
                                         <input type="text" name="copyright" class="form-control"
-                                            value="{{$footerInfo->copyright}}">
+                                            value="{{$footerInfo?->copyright}}">
                                     </div>
                                 </div>
 
@@ -43,12 +43,12 @@
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Powered By</label>
                                     <div class="col-sm-12 col-md-7">
                                         <input type="text" name="powered_by" class="form-control"
-                                            value="{{$footerInfo->powered_by}}">
+                                            value="{{$footerInfo?->powered_by}}">
                                     </div>
                                 </div>
-                              
 
-                                
+
+
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">

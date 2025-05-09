@@ -38,16 +38,19 @@ class PersonalGrowthController extends Controller
             'description' => ['required','max:1000'],
             'startDate' =>['date'],
             'dueDate' =>['date'],
+            'status' => ['required', 'in:draft,published'],
+
         ]);
 
 
-        
+
 
         $personalGrowth = new PersonalGrowth();
         $personalGrowth->name = $request->name;
         $personalGrowth->description = $request->description;
         $personalGrowth->startDate = $request->startDate;
         $personalGrowth->dueDate = $request->dueDate;
+        $personalGrowth->status = $request->status;
         $personalGrowth->save();
 
 
@@ -85,6 +88,8 @@ class PersonalGrowthController extends Controller
             'description' => ['required','max:1000'],
             'startDate' =>['date'],
             'dueDate' =>['date'],
+            'status' => ['required', 'in:draft,published'],
+
 
         ]);
 
@@ -93,6 +98,7 @@ class PersonalGrowthController extends Controller
         $personalGrowth->description = $request->description;
         $personalGrowth->startDate = $request->startDate;
         $personalGrowth->dueDate = $request->dueDate;
+        $personalGrowth->status = $request->status;
         $personalGrowth->save();
 
 
@@ -100,6 +106,14 @@ class PersonalGrowthController extends Controller
         return redirect()->route('admin.personal-growth.index');
     }
 
+     public function toggleStatus(Request $request, $id)
+    {
+        $growth = PersonalGrowth::findOrFail($id);
+        $growth->show = $request->input('status') == 1;
+        $growth->save();
+
+        return response()->json(['success' => true]);
+    }
     /**
      * Remove the specified resource from storage.
      */

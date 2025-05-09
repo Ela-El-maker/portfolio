@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->date('startDate')->nullable();
             $table->date('dueDate')->nullable();
+            $table->enum('status', ['draft', 'published'])->default('draft');
+            $table->boolean('show')->nullable()->default(null);
             $table->timestamps();
         });
     }

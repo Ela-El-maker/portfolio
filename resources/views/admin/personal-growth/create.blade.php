@@ -38,30 +38,41 @@
                                     </div>
                                 </div>
 
-                               
+
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">From Date</label>
-                                    
-                                     <div class="col-sm-12 col-md-7">
-                                     <div class="input-group input-daterange">
-                                   
-                                        <input type="text" class="form-control" name="startDate" value="">
-                                    </div>
+
+                                    <div class="col-sm-12 col-md-7">
+                                        <div class="input-group input-daterange">
+
+                                            <input type="text" class="form-control" name="startDate" value="">
+                                        </div>
                                     </div>
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Due Date</label>
                                     <div class="col-sm-12 col-md-7">
-                                    <br>
-                                    <div class="input-group input-daterange">
-                                    
-                                        <input type="text" class="form-control" name="dueDate" value="">
+                                        <br>
+                                        <div class="input-group input-daterange">
 
-                                    </div>
+                                            <input type="text" class="form-control" name="dueDate" value="">
+
+                                        </div>
                                     </div>
 
                                 </div>
 
-                                
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <select name="status" class="form-control selectric">
+
+                                            <option>Select</option>
+                                            <option value="draft">Draft</option>
+                                            <option value="published">Published</option>
+
+                                        </select>
+                                    </div>
+                                </div>
 
 
                                 <div class="form-group row mb-4">

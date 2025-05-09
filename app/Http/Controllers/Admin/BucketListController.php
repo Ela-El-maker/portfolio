@@ -38,23 +38,25 @@ class BucketListController extends Controller
             'name' => ['required','max:200'],
             'description' => ['required','max:1000'],
             'startDate' =>['date'],
-    
+            'status' => ['required', 'in:draft,published'],
+
         ]);
 
 
-        
+
 
         $bucketListGrowth = new BucketList();
         $bucketListGrowth->name = $request->name;
         $bucketListGrowth->description = $request->description;
         $bucketListGrowth->startDate = $request->startDate;
+        $bucketListGrowth->status = $request->status;
         $bucketListGrowth->save();
 
 
         toastr()->success('Project Created Successfully', 'Congrats');
         return redirect()->route('admin.bucket-list.index');
 
-    
+
     }
 
     /**
@@ -86,22 +88,33 @@ class BucketListController extends Controller
             'name' => ['required','max:200'],
             'description' => ['required','max:1000'],
             'startDate' =>['date'],
-    
+            'status' => ['required', 'in:draft,published'],
+
         ]);
 
 
-        
+
 
         $bucketListGrowth = BucketList::findorfail($id);
         $bucketListGrowth->name = $request->name;
         $bucketListGrowth->description = $request->description;
         $bucketListGrowth->startDate = $request->startDate;
+        $bucketListGrowth->status = $request->status;
         $bucketListGrowth->save();
 
 
         toastr()->success('Project Updated Successfully', 'Congrats');
         return redirect()->route('admin.bucket-list.index');
 
+    }
+
+    public function toggleStatus(Request $request, $id)
+    {
+        $bucketList = BucketList::findOrFail($id);
+        $bucketList->show = $request->input('status') == 1;
+        $bucketList->save();
+
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -112,6 +125,6 @@ class BucketListController extends Controller
         //
         $buckelistGrowth = BucketList::findorfail($id);
         $buckelistGrowth->delete();
-   
+
     }
 }

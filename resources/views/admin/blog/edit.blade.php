@@ -21,10 +21,11 @@
                             <h4>Update Blog Item Section</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{route('admin.blog.update', $blogEdit->id)}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.blog.update', $blogEdit->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                            
+
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
@@ -39,32 +40,46 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="title" class="form-control" value="{{$blogEdit->title}}">
+                                        <input type="text" name="title" class="form-control"
+                                            value="{{ $blogEdit->title }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
                                     <div class="col-sm-12 col-md-7">
-                                      <select name="category_id" class="form-control selectric">
-                                        
-                                        <option>Select</option>
-                                        @foreach ($categories as $category)
-                                            <option {{$category->id == $blogEdit ->category_id ? 'selected' : '' }} value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
-                                        
-                                      </select>
+                                        <select name="category_id" class="form-control selectric">
+
+                                            <option>Select</option>
+                                            @foreach ($categories as $category)
+                                                <option {{ $category->id == $blogEdit->category_id ? 'selected' : '' }}
+                                                    value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+
+                                        </select>
                                     </div>
-                                  </div>
+                                </div>
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="description" class="summernote">{!!$blogEdit->description!!}</textarea>
+                                        <textarea name="description" class="summernote">{!! $blogEdit->description !!}</textarea>
                                     </div>
                                 </div>
-                       
 
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <select name="status" class="form-control selectric">
+                                            <option value="draft"
+                                                {{ old('status', $blogEdit->status) == 'draft' ? 'selected' : '' }}>
+                                                Draft</option>
+                                            <option value="published"
+                                                {{ old('status', $blogEdit->status) == 'published' ? 'selected' : '' }}>
+                                                Published</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
@@ -85,7 +100,7 @@
     <script>
         $(document).ready(function() {
             $('#image-preview').css({
-                'background-image': 'url("{{$blogEdit->image}}")',
+                'background-image': 'url("{{ $blogEdit->image }}")',
                 'background-size': 'cover',
                 'background-position': 'center center',
             })

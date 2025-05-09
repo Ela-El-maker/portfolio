@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('position');
+            $table->string('company')->nullable();
             $table->text('description');
+            $table->boolean('show')->nullable()->default(null);
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\ContactMessage;
 use App\Models\Feedback;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -22,61 +23,88 @@ class FeedbackDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', function($query){
-            return '<a href="'.route('admin.feedback.edit', $query->id).'" class="btn btn-primary"><i class="fas fa-edit"></i></a> <a href="'.route('admin.feedback.destroy', $query->id).'" class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>';
-        })
-            ->setRowId('id');
+         ->addColumn('show_badge', function ($query) {
+                $class = $query->show ? 'badge-primary' : 'badge-danger';
+                $text = $query->show ? 'Yes' : 'No';
+                return '<span class="badge ' . $class . '" data-column="show_badge">' . $text . '</span>';
+            })
+
+            ->addColumn('show_toggle', function ($query) {
+                $checked = $query->show ? 'checked' : '';
+                return '
+                <label class="custom-switch mt-0">
+                    <input type="checkbox" class="custom-switch-input contact_status" data-id="' . $query->id . '" ' . $checked . '>
+                    <span class="custom-switch-indicator"></span>
+                </label>';
+            })
+
+            ->addColumn('action', function($query) {
+                return '<a href="'.route('admin.show.message', $query->id).'" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
+                        <a href="'.route('admin.delete.messages', $query->id).'" class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>';
+            })
+            ->setRowId('id')->rawColumns(['show_badge',  'show_toggle','action']);
+
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Feedback $model): QueryBuilder
+    public function query(ContactMessage $model): QueryBuilder
     {
         return $model->newQuery();
     }
 
     /**
-     * Optional method if you want to use the html builder.
+     * Optional method if you want to use the HTML builder.
      */
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('feedback-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(0)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('feedback-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
-     * Get the dataTable columns definition.
+     * Get the DataTable columns definition.
      */
     public function getColumns(): array
     {
         return [
-            
             Column::make('id'),
-            Column::make('name'),
-            Column::make('position'),
-            Column::make('description'),
+            Column::make('name')->width(150)->sortable(),
+            Column::make('company'),
+            // Show badge (Yes/No)
+            Column::computed('show_badge')
+                ->title('Visible')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+
+            // Toggle switch
+            Column::computed('show_toggle')
+                ->title('Toggle')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+            // Column::make('description'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(200)
-                  ->addClass('text-center'),
-            // Column::make('created_at'),
-            // Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(200)
+                ->addClass('text-center'),
         ];
+
     }
 
     /**
@@ -86,4 +114,5 @@ class FeedbackDataTable extends DataTable
     {
         return 'Feedback_' . date('YmdHis');
     }
+
 }

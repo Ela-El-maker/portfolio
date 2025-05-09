@@ -39,9 +39,10 @@ class BlogController extends Controller
             [
                 'image' => ['required', 'image', 'max:5000'],
                 'title' => ['required', 'max:200'],
-                'description' => ['required','max:10000'],
+                'description' => ['required',],
                 'category_id' => ['required', 'numeric'],
-               
+                'status' => ['required', 'in:draft,published'],
+
             ]
         );
 
@@ -53,14 +54,13 @@ class BlogController extends Controller
         $blogItem->title = $request->title;
         $blogItem->description = $request->description;
         $blogItem->category_id = $request->category_id;
-    
+        $blogItem->status = $request->status;
 
         $blogItem->save();
 
 
         toastr()->success('Blog Created Successfully!', 'Congrats');
         return redirect()->route('admin.blog.index');
-    
     }
 
     /**
@@ -94,18 +94,19 @@ class BlogController extends Controller
                 'title' => ['required', 'max:200'],
                 'description' => ['required'],
                 'category_id' => ['required', 'numeric'],
-               
+                'status' => ['required', 'in:draft,published'],
+
             ]
         );
         $blogItem =  Blog::findorfail($id);
         $imagePath = handleUpload('image', $blogItem);
 
-    
+
         $blogItem->image = (!empty($imagePath) ? $imagePath : $blogItem->image);
         $blogItem->title = $request->title;
         $blogItem->description = $request->description;
         $blogItem->category_id = $request->category_id;
-    
+        $blogItem->status = $request->status;
 
         $blogItem->save();
 
@@ -114,6 +115,14 @@ class BlogController extends Controller
         return redirect()->route('admin.blog.index');
     }
 
+    public function toggleStatus(Request $request, $id)
+    {
+        $item = Blog::findOrFail($id);
+        $item->show = $request->input('status') == 1;
+        $item->save();
+
+        return response()->json(['success' => true]);
+    }
     /**
      * Remove the specified resource from storage.
      */

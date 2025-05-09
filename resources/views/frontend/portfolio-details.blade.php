@@ -24,30 +24,30 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h2 class="head-title">{{$portfolio->title}}</h2>
+                <h2 class="head-title">{{$portfolio?->title}}</h2>
                 <figure class="image-block">
-                    <img src="{{asset($portfolio->image)}}" class="img-fix" alt="">
+                    <img src="{{asset($portfolio?->image)}}" class="img-fix" alt="">
                 </figure>
                 <div class="portflio-info">
                     <div class="single-info">
                         <h4 class="title">Client</h4>
-                        <p>{{$portfolio->client}}</p>
+                        <p>{{$portfolio?->client}}</p>
                     </div>
                     <div class="single-info">
                         <h4 class="title">Date</h4>
-                        <p>{{date('d M, Y', strtotime($portfolio->created_at))}}</p>
+                        <p>{{date('d M, Y', strtotime($portfolio?->created_at))}}</p>
                     </div>
                     <div class="single-info">
                         <h4 class="title">Website</h4>
-                        <p><a href="{{$portfolio->website}}">{{$portfolio->website}}</a></p>
+                        <p><a href="{{$portfolio?->website}}">{{$portfolio?->website}}</a></p>
                     </div>
                     <div class="single-info">
                         <h4 class="title">Category</h4>
-                        <p>{{$portfolio->category->name}}</p>
+                        <p>{{$portfolio?->category?->name}}</p>
                     </div>
                 </div>
                 <div class="description">
-                    {!!$portfolio->description!!}
+                    {!!$portfolio?->description!!}
                 </div>
             </div>
         </div>

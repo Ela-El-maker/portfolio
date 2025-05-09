@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('client')->nullable();
             $table->text('website')->nullable();
+            $table->enum('status', ['draft', 'published'])->default('draft');
+            $table->boolean('show')->nullable()->default(null);
             $table->timestamps();
         });
     }

@@ -39,23 +39,25 @@ class WorkingOnController extends Controller
             'name' => ['required','max:200'],
             'description' => ['required','max:1000'],
             'dueDate' =>['date'],
-    
+            'status' => ['required', 'in:draft,published'],
+
         ]);
 
 
-        
+
 
         $workingOnGrowth = new WorkingOn();
         $workingOnGrowth->name = $request->name;
         $workingOnGrowth->description = $request->description;
         $workingOnGrowth->dueDate = $request->dueDate;
+        $workingOnGrowth->status = $request->status;
         $workingOnGrowth->save();
 
 
         toastr()->success('Project Created Successfully', 'Congrats');
         return redirect()->route('admin.working-on.index');
 
-    
+
     }
 
     /**
@@ -74,7 +76,7 @@ class WorkingOnController extends Controller
         //
         $editWorks = WorkingOn::findorfail($id);
         return view('admin.working-on.edit', compact('editWorks'));
-    
+
     }
 
     /**
@@ -87,23 +89,34 @@ class WorkingOnController extends Controller
             'name' => ['required','max:200'],
             'description' => ['required','max:1000'],
             'dueDate' =>['date'],
-    
+            'status' => ['required', 'in:draft,published'],
+
+
         ]);
 
 
-        
+
 
         $workingOnGrowth =  WorkingOn::findorfail($id);
         $workingOnGrowth->name = $request->name;
         $workingOnGrowth->description = $request->description;
         $workingOnGrowth->dueDate = $request->dueDate;
+        $workingOnGrowth->status = $request->status;
         $workingOnGrowth->save();
 
 
         toastr()->success('Project Updated Successfully', 'Congrats');
         return redirect()->route('admin.working-on.index');
 
-    
+
+    }
+     public function toggleStatus(Request $request, $id)
+    {
+        $workingOn = WorkingOn::findOrFail($id);
+        $workingOn->show = $request->input('status') == 1;
+        $workingOn->save();
+
+        return response()->json(['success' => true]);
     }
 
     /**

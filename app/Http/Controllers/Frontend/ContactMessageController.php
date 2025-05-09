@@ -17,7 +17,6 @@ class ContactMessageController extends Controller
     {
         //
         return $dataTable->render('admin.contacts.index');
-        
     }
 
     /**
@@ -34,28 +33,31 @@ class ContactMessageController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    // Validate the request data
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'subject' => 'required|string|max:255',
-        'message' => 'required|string',
-    ]);
+    {
+        // dd($request->all());
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'message' => 'required|text',
+        ]);
 
-    // Create a new ContactMessage instance and save to the database
-    ContactMessage::insert([
-        'name' => $request ->name,
-        'email' => $request ->email,
-        'subject' => $request ->subject,
-        'message'=>$request->message,
-        'created_at' => Carbon::now(),
+        // Create a new ContactMessage instance and save to the database
+        ContactMessage::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'company' => $request->company,
+            'message' => $request->message,
+            'created_at' => Carbon::now(),
 
-    ]);
+        ]);
 
-    // Return a JSON response
-    return response()->json(['status' => 'success', 'message' => 'Your message has been sent!']);
-}
+        // Return a JSON response
+        return response()->json(['status' => 'success', 'message' => 'Your message has been sent!']);
+    }
 
 
     /**
@@ -65,10 +67,10 @@ class ContactMessageController extends Controller
     {
         //
         // Find the contact message by ID
-    $contactMessage = ContactMessage::findOrFail($id);
+        $contactMessage = ContactMessage::findOrFail($id);
 
-    // Return a view with the contact message data
-    return view('admin.contacts.view', compact('contactMessage'));
+        // Return a view with the contact message data
+        return view('admin.contacts.view', compact('contactMessage'));
     }
 
     /**

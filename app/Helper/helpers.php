@@ -60,6 +60,40 @@ function getColor($index)
 }
 
 
+if (!function_exists('relativeTime')) {
+    /**
+     * Format a timestamp as a relative time string (e.g., "4 mins ago" or "in 2 days").
+     *
+     * @param string $timestamp The timestamp to format.
+     * @return string
+     */
+    function relativeTime($timestamp)
+    {
+        $now = new DateTime();
+        $then = new DateTime($timestamp);
+        $diff = $now->diff($then);
+
+        $isFuture = $then > $now;
+
+        $suffix = $isFuture ? 'from now' : 'ago';
+
+        if ($diff->y > 0) {
+            return $diff->y . ' year' . ($diff->y > 1 ? 's' : '') . " $suffix";
+        } elseif ($diff->m > 0) {
+            return $diff->m . ' month' . ($diff->m > 1 ? 's' : '') . " $suffix";
+        } elseif ($diff->d > 0) {
+            return $diff->d . ' day' . ($diff->d > 1 ? 's' : '') . " $suffix";
+        } elseif ($diff->h > 0) {
+            return $diff->h . ' hour' . ($diff->h > 1 ? 's' : '') . " $suffix";
+        } elseif ($diff->i > 0) {
+            return $diff->i . ' min' . ($diff->i > 1 ? 's' : '') . " $suffix";
+        } else {
+            return $isFuture ? 'In a moment' : 'Just now';
+        }
+    }
+}
+
+
 
 /**** Set sidebar active */
 

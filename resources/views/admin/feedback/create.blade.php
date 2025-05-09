@@ -24,9 +24,9 @@
                             <form action="{{ route('admin.feedback.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                
 
-                              
+
+
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
@@ -37,9 +37,9 @@
                                 </div>
 
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Position</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Company</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="position" class="form-control"
+                                        <input type="text" name="company" class="form-control"
                                             value="">
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
 
-                                
+
 
 
                                 <div class="form-group row mb-4">

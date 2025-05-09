@@ -109,10 +109,13 @@ Route::group([
     Route::get('/get/contacts',[ContactMessageController::class, 'getMessages'])->name('get.messages');
     Route::delete('/delete/contacts/{id}',[ContactMessageController::class, 'deleteMessages'])->name('delete.messages');
     Route::get('/show/contacts/{id}',[ContactMessageController::class, 'showMessage'])->name('show.message');
+    Route::post('contact/toggle/{id}', [ContactMessageController::class, 'toggleStatus'])->name('contact.toggle');
 
 
     /***Service Route* */
     Route::resource('service', ServiceController::class);
+    Route::post('service/toggle/{id}', [ServiceController::class, 'toggleStatus'])->name('service.toggle');
+
     /**** Service Section Setting Route */
     Route::resource('service-section-setting', ServiceSectionSettingController::class);
 
@@ -124,13 +127,18 @@ Route::group([
 
     /***CareerGrowth Route* */
     Route::resource('bucket-list', BucketListController::class);
+    Route::post('bucketList/toggle/{id}', [BucketListController::class, 'toggleStatus'])->name('bucketList.toggle');
+
 
     /***CareerGrowth Route* */
     Route::resource('working-on', WorkingOnController::class);
+    Route::post('working-on/toggle/{id}', [WorkingOnController::class, 'toggleStatus'])->name('working-on.toggle');
+
 
 
     /***PersonalGrowth Route* */
     Route::resource('personal-growth', PersonalGrowthController::class);
+    Route::post('growth/toggle/{id}', [PersonalGrowthController::class, 'toggleStatus'])->name('growth.toggle');
 
     /**** Growth Section Setting Route */
     Route::resource('personal-growth-section-setting', PersonalGrowthSectionSettingController::class);
@@ -146,6 +154,7 @@ Route::group([
 
     /**** Portfolio Item Route */
     Route::resource('portfolio-item', PortfolioItemController::class);
+    Route::post('portfolio-item/toggle/{id}', [PortfolioItemController::class, 'toggleStatus'])->name('portfolio-item.toggle');
 
 
     /**** Portfolio Section Setting Route */
@@ -161,6 +170,8 @@ Route::group([
     Route::resource('experience', ExperienceController::class);
 
     Route::resource('feedback', FeedbackController::class);
+    Route::post('feedback/toggle/{id}', [FeedbackController::class, 'toggleStatus'])->name('feedback.toggle');
+
     Route::resource('feedback-section-setting', FeedbackSectionSettingController::class);
 
     /*** Blog Category Route */
@@ -168,6 +179,7 @@ Route::group([
     Route::resource('blog-section-setting', BlogSectionSettingController::class);
 
     Route::resource('blog', BlogController::class);
+    Route::post('blog/toggle/{id}', [BlogController::class, 'toggleStatus'])->name('blog.toggle');
 
 
     Route::resource('contact-section-setting', ContactSectionSettingController::class);

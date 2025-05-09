@@ -20,10 +20,10 @@
                                 <i class="fas fa-quote-left"></i>
                             </div>
                             <h5 class="title">{{$feedback?->name}}</h5>
-                            <h6 class="position">{{$feedback?->position}}</h6>
+                            <h6 class="position">{{$feedback?->company}}</h6>
                         </div>
                         <div class="content">
-                            <p>{!!$feedback?->description!!}</p>
+                            <p>{!!$feedback?->message!!}</p>
                         </div>
                     </div>
                     @endforeach

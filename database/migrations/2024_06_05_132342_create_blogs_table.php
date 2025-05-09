@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->integer('category_id')->nullable();
             $table->text('description')->nullable();
+            $table->enum('status', ['draft', 'published'])->default('draft');
+            $table->boolean('show')->nullable()->default(null);
             $table->timestamps();
         });
     }

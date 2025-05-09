@@ -26,15 +26,15 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h2 class="head-title">{{$blog->title}}</h2>
+                <h2 class="head-title">{{$blog?->title}}</h2>
                 <div class="blog-meta">
                     <div class="single-meta">
                         <div class="meta-title">Published</div>
-                        <h4 class="meta-value"><a href="javascript:void(0)">{{date('d M, Y', strtotime($blog->created_at))}}</a></h4>
+                        <h4 class="meta-value"><a href="javascript:void(0)">{{date('d M, Y', strtotime($blog?->created_at))}}</a></h4>
                     </div>
                     <div class="single-meta">
                         <div class="meta-title">Tag</div>
-                        <h4 class="meta-value"><a href="javascript:void(0)">{{$blog->getCategory->name}}</a></h4>
+                        <h4 class="meta-value"><a href="javascript:void(0)">{{$blog?->getCategory?->name}}</a></h4>
                     </div>
                     {{-- <div class="single-meta">
                         <div class="meta-title">Comments</div>
@@ -42,23 +42,23 @@
                     </div> --}}
                 </div>
                 <figure class="image-block">
-                    <img class="img-fix" src="{{asset($blog->image)}}" alt="">
+                    <img class="img-fix" src="{{asset($blog?->image)}}" alt="">
                 </figure>
                 <div class="description">
-                    {!!$blog->description!!}
+                    {!!$blog?->description!!}
                 </div>
                 <div class="single-navigation">
                     @if ($previousPost)
-                        <a href="{{route('show.blog', $previousPost->id)}}" class="nav-link"><span class="icon"><i
-                                class="fal fa-angle-left"></i></span><span class="text">{{$previousPost->title}}</span></a>
-                   
+                        <a href="{{route('show.blog', $previousPost?->id)}}" class="nav-link"><span class="icon"><i
+                                class="fal fa-angle-left"></i></span><span class="text">{{$previousPost?->title}}</span></a>
+
                     @endif
                      @if ($nextPost)
 
-                         <a href="{{route('show.blog', $nextPost->id)}}" class="nav-link"><span class="text">{{$nextPost->title}}</span><span
+                         <a href="{{route('show.blog', $nextPost?->id)}}" class="nav-link"><span class="text">{{$nextPost?->title}}</span><span
                             class="icon"><i class="fal fa-angle-right"></i></span></a>
                     @endif
-                               
+
                 </div>
             </div>
         </div>

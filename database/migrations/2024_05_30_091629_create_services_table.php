@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->text('description')->nullable();
+            $table->enum('status', ['planning', 'inprogress','completed'])->default('planning');
+            $table->boolean('show')->nullable()->default(null); 
             $table->timestamps();
         });
     }

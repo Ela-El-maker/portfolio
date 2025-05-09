@@ -44,7 +44,9 @@ class PortfolioItemController extends Controller
                 'description' => ['required'],
                 'category_id' => ['required', 'numeric'],
                 'client' => ['max:200'],
-                'website' => ['url']
+                'website' => ['url'],
+            'status' => ['required', 'in:draft,published'],
+
             ]
         );
 
@@ -58,7 +60,7 @@ class PortfolioItemController extends Controller
         $portfolioItem->category_id = $request->category_id;
         $portfolioItem->client = $request->client;
         $portfolioItem->website = $request->website;
-
+        $portfolioItem->status = $request->status;
         $portfolioItem->save();
 
 
@@ -98,7 +100,9 @@ class PortfolioItemController extends Controller
                 'description' => ['required'],
                 'category_id' => ['required', 'numeric'],
                 'client' => ['max:200'],
-                'website' => ['url']
+                'website' => ['url'],
+            'status' => ['required', 'in:draft,published'],
+
             ]
         );
 
@@ -106,7 +110,7 @@ class PortfolioItemController extends Controller
 
         $imagePath = handleUpload('image', $portfolioItem);
 
-        
+
 
         $portfolioItem->image = (!empty($imagePath) ? $imagePath : $portfolioItem->image);
         $portfolioItem->title = $request->title;
@@ -114,7 +118,7 @@ class PortfolioItemController extends Controller
         $portfolioItem->category_id = $request->category_id;
         $portfolioItem->client = $request->client;
         $portfolioItem->website = $request->website;
-
+        $portfolioItem->status = $request->status;
         $portfolioItem->save();
 
 
@@ -122,6 +126,14 @@ class PortfolioItemController extends Controller
         return redirect()->route('admin.portfolio-item.index');
     }
 
+     public function toggleStatus(Request $request, $id)
+    {
+        $item = PortfolioItem::findOrFail($id);
+        $item->show = $request->input('status') == 1;
+        $item->save();
+
+        return response()->json(['success' => true]);
+    }
     /**
      * Remove the specified resource from storage.
      */
